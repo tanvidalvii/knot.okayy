@@ -8,6 +8,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+.slider{
+    position:relative;
+}
+
+.slide{
+    width:100%;
+    border-radius:10px;
+    display:none;
+}
+
+.slide.active{
+    display:block;
+}
+
+.prev,.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:rgba(255,255,255,.8);
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:50%;
+    font-size:18px;
+}
+
+.prev{left:8px;}
+.next{right:8px;}
+
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
@@ -72,7 +102,7 @@ border-radius:8px;
 
 .banner{
 height:280px;
-background:url('banner.jpeg');
+background:url('images/banner.jpeg');
 background-size:cover;
 background-position:center;
 }
@@ -161,6 +191,31 @@ opacity:0.7;
 </style>
 </head>
 
+<script>
+function changeSlide(button, direction){
+
+    const slider = button.parentElement;
+    const slides = slider.querySelectorAll(".slide");
+
+    let current = 0;
+
+    slides.forEach((slide,index)=>{
+        if(slide.classList.contains("active")){
+            current=index;
+        }
+    });
+
+    slides[current].classList.remove("active");
+
+    current += direction;
+
+    if(current>=slides.length) current=0;
+    if(current<0) current=slides.length-1;
+
+    slides[current].classList.add("active");
+}
+</script>
+
 <body>
 
 <nav>
@@ -205,32 +260,77 @@ Welcome to knot.okayy! We create beautiful, handcrafted crochet products includi
 </div>
 
 <div class="card">
-<img src="charms.jpg">
-<h3>Bag Charm</h3>
-<p>Adorable crochet charm.</p>
-<div class="price">₹150</div>
+  <div class="slider">
+    <button class="prev" onclick="changeSlide(this,-1)">❮</button>
+
+    <img src="images/flower.jpeg" class="slide active">
+    <img src="images/dino.jpeg" class="slide">
+    <img src="images/bow.jpeg" class="slide">
+    <img src="images/cat.jpeg" class="slide">
+    <img src="images/sunflower.jpeg" class="slide">
+    <img src="images/luffy.jpeg" class="slide">
+
+    <button class="next" onclick="changeSlide(this,1)">❯</button>
+  </div>
+
+  <h3>Bag Charms</h3>
+  <p>Adorable crochet charm. Custom projects available.</p>
+  <div class="price">1 for ₹180 & 2 for ₹300</div>
 </div>
 
 <div class="card">
-<img src="images\gajra.jpg">
-<h3>Gajra</h3>
-<p>Beautiful crochet flower garland. Available in white, offwhite and rani pink colour</p>
-<div class="price">₹200</div>
+  <div class="slider">
+    <button class="prev" onclick="changeSlide(this,-1)">❮</button>
+
+    <img src="images/gajra.jpg" class="slide active">
+    <img src="images/white gajr.jpeg" class="slide">
+    <img src="images/pink gajra.jpeg" class="slide">
+
+    <button class="next" onclick="changeSlide(this,1)">❯</button>
+  </div>
+
+  <h3>Gajra</h3>
+  <p>Beautiful crochet flower garland. Available in white, offwhite and rani pink colour</p>
+  <div class="price">₹200</div>
 </div>
+
 
 <div class="card">
 <img src="images\hair_accessory.jpg">
 <h3>Hair Accessories</h3>
 <p>Handmade crochet clips.</p>
-<div class="price">₹200</div>
+<div class="price">₹300</div>
 </div>
 
 <div class="card">
-<img src="luffy.jpeg">
-<h3>Custom Anime Charm</h3>
-<p>Luffy hat from One piece</p>
-<div class="price">₹150</div>
+  <div class="slider">
+    <button class="prev" onclick="changeSlide(this,-1)">❮</button>
+
+    <img src="images/green bag.jpeg" class="slide active">
+    <img src="images/BLUE BAG.jpeg" class="slide">
+
+    <button class="next" onclick="changeSlide(this,1)">❯</button>
+  </div>
+
+  <h3>Tote Bag</h3>
+  <p>Available in Custom colours.</p>
+  <div class="price">₹650</div>
 </div>
+
+<div class="card">
+<img src="images\donut bag.jpeg">
+<h3>Donut Bag</h3>
+<p>Statement Donut bag. Available in Custom colour.</p>
+<div class="price">₹1000</div>
+</div>
+
+<div class="card">
+<img src="images\shoulder bag.jpeg">
+<h3>Shoulder Bag</h3>
+<p>Cutesy shoulder bag. Available in Custom colour</p>
+<div class="price">₹650</div>
+</div>
+
 
 </div>
 </section>
